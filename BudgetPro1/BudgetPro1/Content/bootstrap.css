@@ -95,7 +95,7 @@ hr {
 }
 
 mark {
-  color: #000;
+  color: #001;
   background: #ff0;
 }
 
@@ -6813,4 +6813,10 @@ td.visible-print {
   td.hidden-print {
     display: none !important;
   }
+  
+.bg
+{
+  width: 100%;
+  z-index: 0;
+}
 }

@@ -10,107 +10,107 @@ using BudgetPro1.Models;
 
 namespace BudgetPro1.Controllers
 {
-    public class AccountsController : Controller
+    public class BudgetCategoriesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Accounts
+        // GET: BudgetCategories
         public ActionResult Index()
         {
-            return View(db.Accounts.ToList());
+            return View(db.BudgetCategory.ToList());
         }
 
-        // GET: Accounts/Details/5
+        // GET: BudgetCategories/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Account account = db.Accounts.Find(id);
-            if (account == null)
+            BudgetCategory budgetCategory = db.BudgetCategory.Find(id);
+            if (budgetCategory == null)
             {
                 return HttpNotFound();
             }
-            return View(account);
+            return View(budgetCategory);
         }
 
-        // GET: Accounts/Create
+        // GET: BudgetCategories/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Accounts/Create
+        // POST: BudgetCategories/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Balance")] Account account)
+        public ActionResult Create([Bind(Include = "Id,Name")] BudgetCategory budgetCategory)
         {
             if (ModelState.IsValid)
             {
-                db.Accounts.Add(account);
+                db.BudgetCategory.Add(budgetCategory);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(account);
+            return View(budgetCategory);
         }
 
-        // GET: Accounts/Edit/5
+        // GET: BudgetCategories/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Account account = db.Accounts.Find(id);
-            if (account == null)
+            BudgetCategory budgetCategory = db.BudgetCategory.Find(id);
+            if (budgetCategory == null)
             {
                 return HttpNotFound();
             }
-            return View(account);
+            return View(budgetCategory);
         }
 
-        // POST: Accounts/Edit/5
+        // POST: BudgetCategories/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Balance")] Account account)
+        public ActionResult Edit([Bind(Include = "Id,Name")] BudgetCategory budgetCategory)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(account).State = EntityState.Modified;
+                db.Entry(budgetCategory).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(account);
+            return View(budgetCategory);
         }
 
-        // GET: Accounts/Delete/5
+        // GET: BudgetCategories/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Account account = db.Accounts.Find(id);
-            if (account == null)
+            BudgetCategory budgetCategory = db.BudgetCategory.Find(id);
+            if (budgetCategory == null)
             {
                 return HttpNotFound();
             }
-            return View(account);
+            return View(budgetCategory);
         }
 
-        // POST: Accounts/Delete/5
+        // POST: BudgetCategories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Account account = db.Accounts.Find(id);
-            db.Accounts.Remove(account);
+            BudgetCategory budgetCategory = db.BudgetCategory.Find(id);
+            db.BudgetCategory.Remove(budgetCategory);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -123,52 +123,5 @@ namespace BudgetPro1.Controllers
             }
             base.Dispose(disposing);
         }
-        //Create Transaction
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CreateTransaction([Bind(Include = "AccountID, Transaction")] Transactions transaction, int AccountId)
-        {
-            if (ModelState.IsValid)
-            {
-
-                db.Transactions.Add(transaction);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-
-
-            }
-            return View();
-        }
-
-        // GET: Posts/Delete/5
-        public ActionResult DeleteTransaction(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Transactions transactions = db.Transactions.Find(id);
-            if (transactions == null)
-            {
-                return HttpNotFound();
-            }
-            return View(transactions);
-        }
-
-        //Post delete
-
-        [HttpPost, ActionName("DeleteTransaction")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteTransaction(int id)
-        {
-
-            Transactions transactions = db.Transactions.Find(id);
-
-            db.Transactions.Remove(transactions);
-            db.SaveChanges();
-            //return RedirectToAction("Index");
-            return RedirectToAction("Index");
-        }
-
     }
 }

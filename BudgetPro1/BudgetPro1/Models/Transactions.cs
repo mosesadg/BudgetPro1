@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -11,7 +12,10 @@ namespace BudgetPro1.Models
         public string Description { get; set; }
         public bool Type { get; set; }//check if needed , type exists in budgetitem
         public DateTimeOffset Date { get; set; }
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:c}")]
         public decimal Amount { get; set; }
+
         public decimal ReconciledAmount { get; set; }
 
 
