@@ -13,6 +13,7 @@ namespace BudgetPro1.Models
 
 
         public virtual Household Household { get; set; }
+        public virtual ICollection<Transactions> Transactions { get; set; }
         
     }
 

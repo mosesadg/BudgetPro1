@@ -47,5 +47,11 @@ namespace BudgetPro1.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Household> Households { get; set; }
+        public DbSet<Transactions> Transactions { get; set; }
+        public DbSet<Account> Accounts { get; set; }
+        public DbSet<BudgetItem> BudgetItems { get; set; }
+        public DbSet<BudgetCategory> BudgetCategory { get; set; }
     }
 }

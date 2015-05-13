@@ -17,8 +17,9 @@ namespace BudgetPro1.Models
 
 
         public virtual Account Account { get; set; }
-        public virtual Household Household { get; set; }
         public virtual BudgetCategory BudgetCategory { get; set; }
+        //public virtual Household Household { get; set; }
+        
 
         
     }
